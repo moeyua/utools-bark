@@ -5,7 +5,7 @@
 		{
 		  "code": "bark",
 		  "explain": "hello world",
-			"cmds":["bark"]
+			"cmds":[ "bark", "text" ]
 		}
 	]
 }

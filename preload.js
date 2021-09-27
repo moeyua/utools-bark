@@ -1,3 +1,5 @@
+
+
 var key = 'https://api.day.app/f8VKmJyepTSSq2dFUiYsDh/'
 var content = ''
 var url = key + content;
@@ -22,6 +24,14 @@ function bark() {
 
     xhr.open('GET', url, true);
     xhr.send(null);
+}
+
+function setKey(id, key) {
+    utools.dbStorage.setItem(id, key)
+}
+
+function getKey(id) {
+    return utools.dbStorage.getItem(id)
 }
 
 
