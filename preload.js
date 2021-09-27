@@ -1,10 +1,5 @@
 
-
-var key = 'https://api.day.app/f8VKmJyepTSSq2dFUiYsDh/'
-var content = ''
-var url = key + content;
-
-function bark() {
+function send(url) {
     var xhr = new XMLHttpRequest();
     
     xhr.onreadystatechange = function(){
@@ -26,14 +21,13 @@ function bark() {
     xhr.send(null);
 }
 
-function setKey(id, key) {
-    utools.dbStorage.setItem(id, key)
-}
+// function setKey(id, key) {
+//     utools.dbStorage.setItem(id, key)
+// }
 
-function getKey(id) {
-    return utools.dbStorage.getItem(id)
-}
-
+// function getKey(id) {
+//     return utools.dbStorage.getItem(id)
+// }
 
 window.exports = {
     "bark": { // 注意：键对应的是 plugin.json 中的 features.code
@@ -43,9 +37,10 @@ window.exports = {
           enter: (action) => {
              // action = { code, type, payload }
              window.utools.hideMainWindow()
-             // do some thing
-             bark();
-            //  window.utools.outPlugin()
+             var key = 'https://api.day.app/f8VKmJyepTSSq2dFUiYsDh/';
+             var content = action.payload;
+             send(key + content);
+             window.utools.outPlugin();
           }  
        } 
     }

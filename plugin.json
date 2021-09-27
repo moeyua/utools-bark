@@ -4,8 +4,12 @@
 	"features": [
 		{
 		  "code": "bark",
-		  "explain": "hello world",
-			"cmds":[ "bark", "text" ]
+		  "explain": "send message to device",
+		  "cmds":[{
+            "type": "regex",
+            "label": "bark",
+            "match": "/(.*)/"
+          }]
 		}
 	]
 }
