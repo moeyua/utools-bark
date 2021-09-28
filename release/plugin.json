@@ -1,0 +1,29 @@
+{
+	"logo": "logo.png",
+    "preload": "preload.js",
+	"features": [
+		{
+		  "code": "send",
+		  "explain": "send message to device",
+		  "cmds":[{
+            "type": "regex",
+            "label": "send",
+            "match": "/(.*)/"
+          }]
+		},
+        {
+          "code": "setKey",
+		  "explain": "set the device key",
+		  "cmds":[{
+            "type": "regex",
+            "label": "setKey",
+            "match": "/(https://api.day.app/.*)/"
+          }]
+        },
+        {
+          "code": "delKey",
+		  "explain": "delete the key",
+		  "cmds":["delete"]
+        }
+	]
+}
