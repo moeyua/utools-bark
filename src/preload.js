@@ -7,7 +7,6 @@ function send(url) {
     if (xhr.readyState === 4){
         if (xhr.status === 200){
             console.log(xhr.responseText)
-            window.utools.showNotification("发送成功")
         } else {
             console.log(xhr.statusText);
         }
@@ -71,9 +70,10 @@ window.exports = {
             // action = { code, type, payload }
              window.utools.hideMainWindow()
              let key = getKey();
-             let content = action.payload;
+             let content = encodeURIComponent(action.payload);
              send(key + content)
-            window.utools.outPlugin();
+             window.utools.showNotification("发送成功")
+             window.utools.outPlugin();
           }
        } 
     },
@@ -85,6 +85,7 @@ window.exports = {
                 // action = { code, type, payload }
                 window.utools.hideMainWindow()
                 window.utools.dbStorage.setItem("key", action.payload)
+                window.utools.showNotification("key 已设置成功")
                 window.utools.outPlugin();
             }
         } 
@@ -94,6 +95,7 @@ window.exports = {
          args: {
              enter: (action) => {
                 window.utools.dbStorage.removeItem("key")
+                window.utools.showNotification("key 成功删除")
              }
          }
      },
