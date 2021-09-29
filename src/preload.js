@@ -25,6 +25,7 @@ function send(url) {
 
 function getKey() {
     let keys = window.utools.db.allDocs();
+    console.log(keys);
     if (keys.length === 0) {
         window.utools.showMessageBox({
             type: 'warning',
@@ -32,9 +33,32 @@ function getKey() {
             title: '警告',
             message: '还没有设置 key',
             defaultId: 0
-          })
+        })
     } else{
         return keys[0].value;
+    }
+}
+
+function getKeys() {
+    let keys = window.utools.db.allDocs();
+    console.log(keys)
+    if (keys.length === 0) {
+        window.utools.showMessageBox({
+            type: 'warning',
+            buttons: ['我知道了'],
+            title: '警告',
+            message: '还没有设置 key',
+            defaultId: 0
+        })
+    } else{
+        let keysList = [];
+        for (const key of keys) {
+            keysList.push({
+                title: key._id,
+                description: key.value
+            })
+        }
+        return keysList;
     }
 }
 
@@ -72,5 +96,14 @@ window.exports = {
                 window.utools.dbStorage.removeItem("key")
              }
          }
+     },
+     "showKey": {
+         mode: "list",
+         args: {
+            enter: (action, callbackSetList) => {
+               // 如果进入插件就要显示列表数据
+               callbackSetList( getKeys() )
+            },
+        }
      }
  }

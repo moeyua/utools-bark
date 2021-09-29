@@ -9,21 +9,26 @@
             "type": "regex",
             "label": "send",
             "match": "/(.*)/"
-          }]
+      }]
 		},
-        {
-          "code": "setKey",
+    {
+      "code": "setKey",
 		  "explain": "set the device key",
 		  "cmds":[{
             "type": "regex",
             "label": "setKey",
             "match": "/(https://api.day.app/.*)/"
-          }]
-        },
-        {
-          "code": "delKey",
+      }]
+    },
+    {
+      "code": "delKey",
 		  "explain": "delete the key",
 		  "cmds":["delete"]
-        }
+    },
+    {
+      "code": "showKey",
+      "explain": "show the device key",
+      "cmds": ["showKey"]
+    }
 	]
 }
