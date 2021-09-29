@@ -6,9 +6,9 @@
 		  "code": "send",
 		  "explain": "send message to device",
 		  "cmds":[{
-            "type": "regex",
+            "type": "over",
             "label": "send",
-            "match": "/(.*)/"
+            "minLength": 1
       }]
 		},
     {
@@ -23,7 +23,7 @@
     {
       "code": "delKey",
 		  "explain": "delete the key",
-		  "cmds":["delete"]
+		  "cmds":["delKey"]
     },
     {
       "code": "showKey",
