@@ -26,13 +26,8 @@ function getKey() {
     let keys = window.utools.db.allDocs();
     console.log(keys);
     if (keys.length === 0) {
-        window.utools.showMessageBox({
-            type: 'warning',
-            buttons: ['我知道了'],
-            title: '警告',
-            message: '还没有设置 key',
-            defaultId: 0
-        })
+        window.utools.showNotification("请先去设置 key");
+        return 0;
     } else{
         return keys[0].value;
     }
@@ -40,15 +35,8 @@ function getKey() {
 
 function getKeys() {
     let keys = window.utools.db.allDocs();
-    console.log(keys)
     if (keys.length === 0) {
-        window.utools.showMessageBox({
-            type: 'warning',
-            buttons: ['我知道了'],
-            title: '警告',
-            message: '还没有设置 key',
-            defaultId: 0
-        })
+        window.utools.showNotification("请先去设置 key");
     } else{
         let keysList = [];
         for (const key of keys) {
@@ -68,11 +56,13 @@ window.exports = {
           // 进入插件时调用
           enter: (action) => {
             // action = { code, type, payload }
-             window.utools.hideMainWindow()
+             window.utools.hideMainWindow();
              let key = getKey();
-             let content = encodeURIComponent(action.payload);
-             send(key + content)
-             window.utools.showNotification("发送成功")
+             if (key !== 0) {
+                let content = encodeURIComponent(action.payload);
+                send(key + content);
+                window.utools.showNotification("发送成功");
+             }
              window.utools.outPlugin();
           }
        } 
@@ -83,9 +73,9 @@ window.exports = {
             // 进入插件时调用
             enter: (action) => {
                 // action = { code, type, payload }
-                window.utools.hideMainWindow()
-                window.utools.dbStorage.setItem("key", action.payload)
-                window.utools.showNotification("key 已设置成功")
+                window.utools.hideMainWindow();
+                window.utools.dbStorage.setItem("key", action.payload);
+                window.utools.showNotification("key 已设置成功");
                 window.utools.outPlugin();
             }
         } 
@@ -94,8 +84,10 @@ window.exports = {
          mode: "none",
          args: {
              enter: (action) => {
-                window.utools.dbStorage.removeItem("key")
-                window.utools.showNotification("key 成功删除")
+                window.utools.hideMainWindow();
+                window.utools.dbStorage.removeItem("key");
+                window.utools.showNotification("key 成功删除");
+                window.utools.outPlugin();
              }
          }
      },
@@ -104,7 +96,7 @@ window.exports = {
          args: {
             enter: (action, callbackSetList) => {
                // 如果进入插件就要显示列表数据
-               callbackSetList( getKeys() )
+               callbackSetList( getKeys() );
             },
         }
      }
