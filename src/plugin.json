@@ -17,7 +17,7 @@
 		  "cmds":[{
             "type": "regex",
             "label": "setKey",
-            "match": "/(https://api.day.app/.*)/"
+            "match": "/(setKey>.*)/"
       }]
     },
     {

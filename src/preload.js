@@ -74,8 +74,9 @@ window.exports = {
             enter: (action) => {
                 // action = { code, type, payload }
                 window.utools.hideMainWindow();
-                window.utools.dbStorage.setItem("key", action.payload);
-                window.utools.showNotification("key 已设置成功");
+                const key = action.payload.substring(7)
+                window.utools.dbStorage.setItem("key", key);
+                window.utools.showNotification("key 已设置成功。当前 key 为\n" + key);
                 window.utools.outPlugin();
             }
         } 
@@ -97,6 +98,12 @@ window.exports = {
             enter: (action, callbackSetList) => {
                // 如果进入插件就要显示列表数据
                callbackSetList( getKeys() );
+            },
+            // 用户选择列表中某个条目时被调用
+            select: (action, itemData, callbackSetList) => {
+                utools.copyText(itemData.description)
+                window.utools.showNotification(itemData.description + "\n已经复制到剪切板");
+                window.utools.outPlugin();
             },
         }
      }
