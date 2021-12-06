@@ -135,7 +135,7 @@ window.exports = {
                 let message = encodeURIComponent(action.payload);
                 let url = generateUrl(message);
                 send(url)
-                // utools.outPlugin();
+                utools.outPlugin();
             }
         }
     },
@@ -162,7 +162,7 @@ window.exports = {
                         if (text === '0') {
                             text = 0;
                         }                       
-                        utools.showNotification(text)
+                        // utools.showNotification(text)
                         dbStorage.setItem(translate(itemData.title), text)
                     }, '请输入' + itemData.title)
                 }
