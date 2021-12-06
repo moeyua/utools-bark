@@ -12,23 +12,9 @@
       }]
 		},
     {
-      "code": "setKey",
-		  "explain": "set the device key",
-		  "cmds":[{
-            "type": "regex",
-            "label": "setKey",
-            "match": "/(setKey>.*)/"
-      }]
-    },
-    {
-      "code": "delKey",
-		  "explain": "delete the key",
-		  "cmds":["delKey"]
-    },
-    {
-      "code": "showKey",
-      "explain": "show the device key",
-      "cmds": ["showKey"]
+      "code": "setting",
+      "explain": "settings",
+      "cmds":["setting"]
     }
 	]
 }
